@@ -111,6 +111,15 @@ class LoginState extends State<LoginPage> {
                 style: new TextStyle(color: Colors.white, fontSize: 16.0),
               )),
         ),
+        new Padding(padding: new EdgeInsets.symmetric(vertical: 8.0)),
+        new Row(
+          children: <Widget>[
+            new Padding(padding: new EdgeInsets.symmetric(horizontal: 16.0)),
+            new Expanded(child:  new Text("注册"),flex: 1,),
+            new Expanded(child:  new Text("忘记密码",textAlign: TextAlign.end,),flex: 1,),
+            new Padding(padding: new EdgeInsets.symmetric(horizontal: 16.0)),
+          ],
+        ),
       ],
     );
   }
