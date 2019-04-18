@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_qmorn/colors.dart';
-import 'package:flutter_qmorn/common/QmornIcons.dart';
-import 'package:flutter_qmorn/qmorn/widget/TabboxA.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginPage extends StatefulWidget{
+class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -18,36 +16,42 @@ class LoginState extends State<LoginPage> {
   var _name = "";
   var _pwd = "";
   var _isSubmit = false;
-  bool _name_foucs=false;
-  bool _pwd_foucs=false;
+  bool _name_foucs = false;
+  bool _pwd_foucs = false;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Stack(
-          children: <Widget>[
-            _layout(),
-            _isSubmit
-                ? IosLoadingWidget()
-                : Container(
-              color: Colors.transparent,
-              height: 0.0,
-            ),
-          ],
-        ));
+      children: <Widget>[
+        _layout(),
+        _isSubmit
+            ? IosLoadingWidget()
+            : Container(
+                color: Colors.transparent,
+                height: 0.0,
+              ),
+      ],
+    ));
   }
 
   Widget _layout() {
     return new Column(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
+        new Padding(padding: new EdgeInsets.symmetric(vertical: 80.0)),
         new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 10.0),
-            child: Icon(QmornIcons.logo_),
+          padding: new EdgeInsets.symmetric(vertical: 10.0),
+          child: new SvgPicture.asset(
+            'assets/images/svg/touming.svg',
+            width: 80,
+            height: 80,
+            semanticsLabel: 'qmorn Logo',
+          ),
         ),
         new Padding(
-          padding: new EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 25.0),
+          padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 25.0),
           child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -56,7 +60,7 @@ class LoginState extends State<LoginPage> {
                   child: new Icon(
                     Icons.person,
                     size: 26,
-                    color: _name_foucs?mainColor:Colors.grey,
+                    color: _name_foucs ? mainColor : Colors.grey,
                   ),
                 ),
                 new Expanded(
@@ -80,7 +84,7 @@ class LoginState extends State<LoginPage> {
                   child: new Icon(
                     Icons.lock,
                     size: 26,
-                    color:  _pwd_foucs?mainColor:Colors.grey,
+                    color: _pwd_foucs ? mainColor : Colors.grey,
                   ),
                 ),
                 new Expanded(
@@ -111,21 +115,19 @@ class LoginState extends State<LoginPage> {
     );
   }
 
-  void _login() {
+  void _login() {}
 
-  }
-
-  void chengaPwdIcon(){
+  void chengaPwdIcon() {
     setState(() {
-      _pwd_foucs=true;
-      _name_foucs=false;
+      _pwd_foucs = true;
+      _name_foucs = false;
     });
   }
 
-  void chengaNameIcon(){
+  void chengaNameIcon() {
     setState(() {
-      _pwd_foucs=false;
-      _name_foucs=true;
+      _pwd_foucs = false;
+      _name_foucs = true;
     });
   }
 }
