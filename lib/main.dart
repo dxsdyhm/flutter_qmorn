@@ -4,6 +4,8 @@ import 'package:flutter_qmorn/qmorn/pages/LoginPage.dart';
 import 'package:flutter_qmorn/qmorn/pages/LogoPage.dart';
 import 'package:flutter_qmorn/qmorn/routers/router_page.dart';
 
+import 'qmorn/pages/MainPage.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         router_page.login: (context) => new LoginPage(),
+        router_page.main: (context) => new MainPage(),
       },
       home: LogoPage(),
     );

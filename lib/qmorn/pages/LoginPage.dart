@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_qmorn/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_qmorn/qmorn/routers/router_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -36,95 +37,100 @@ class LoginState extends State<LoginPage> {
   }
 
   Widget _layout() {
-    return new Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        new Padding(padding: new EdgeInsets.symmetric(vertical: 80.0)),
-        new Padding(
-          padding: new EdgeInsets.symmetric(vertical: 10.0),
-          child: new SvgPicture.asset(
-            'assets/images/svg/touming.svg',
-            width: 80,
-            height: 80,
-            semanticsLabel: 'qmorn Logo',
+    return new Container(
+      width: double.infinity,
+      height: double.infinity,
+      padding: EdgeInsets.all(32),
+      child: new Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          new Padding(padding: new EdgeInsets.symmetric(vertical: 80.0)),
+          new Padding(
+            padding: new EdgeInsets.symmetric(vertical: 10.0),
+            child: new SvgPicture.asset(
+              'assets/images/svg/touming.svg',
+              width: 80,
+              height: 80,
+              semanticsLabel: 'qmorn Logo',
+            ),
           ),
-        ),
-        new Padding(
-          padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 25.0),
-          child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                new Padding(
-                  padding: new EdgeInsets.only(right: 10.0),
-                  child: new Icon(
-                    Icons.person,
-                    size: 26,
-                    color: _name_foucs ? mainColor : Colors.grey,
+          new Padding(
+            padding: new EdgeInsets.only(top: 20,bottom: 20),
+            child: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  new Padding(
+                    padding: new EdgeInsets.only(right: 10.0),
+                    child: new Icon(
+                      Icons.person,
+                      size: 26,
+                      color: _name_foucs ? mainColor : Colors.grey,
+                    ),
                   ),
-                ),
-                new Expanded(
-                  child: new TextField(
+                  new Expanded(
+                    child: new TextField(
+                        decoration: new InputDecoration(
+                          hintText: '请输入用户名',
+                        ),
+                        onChanged: (str) {
+                          _name = str;
+                        }),
+                  )
+                ]),
+          ),
+          new Padding(
+            padding: new EdgeInsets.only(bottom: 30),
+            child: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  new Padding(
+                    padding: new EdgeInsets.only(right: 10.0),
+                    child: new Icon(
+                      Icons.lock,
+                      size: 26,
+                      color: _pwd_foucs ? mainColor : Colors.grey,
+                    ),
+                  ),
+                  new Expanded(
+                    child: new TextField(
                       decoration: new InputDecoration(
-                        hintText: '请输入用户名',
+                        hintText: '请输入密码',
                       ),
                       onChanged: (str) {
-                        _name = str;
-                      }),
-                )
-              ]),
-        ),
-        new Padding(
-          padding: new EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 36.0),
-          child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                new Padding(
-                  padding: new EdgeInsets.only(right: 10.0),
-                  child: new Icon(
-                    Icons.lock,
-                    size: 26,
-                    color: _pwd_foucs ? mainColor : Colors.grey,
-                  ),
-                ),
-                new Expanded(
-                  child: new TextField(
-                    decoration: new InputDecoration(
-                      hintText: '请输入密码',
+                        _pwd = str;
+                      },
+                      obscureText: true,
                     ),
-                    onChanged: (str) {
-                      _pwd = str;
-                    },
-                    obscureText: true,
-                  ),
-                )
-              ]),
-        ),
-        new Container(
-          width: 320.0,
-          height: 44.0,
-          child: new RaisedButton(
-              onPressed: _login,
-              color: mainColor,
-              child: new Text(
-                '登录',
-                style: new TextStyle(color: Colors.white, fontSize: 16.0),
-              )),
-        ),
-        new Padding(padding: new EdgeInsets.symmetric(vertical: 8.0)),
-        new Row(
-          children: <Widget>[
-            new Padding(padding: new EdgeInsets.symmetric(horizontal: 16.0)),
-            new Expanded(child:  new Text("注册"),flex: 1,),
-            new Expanded(child:  new Text("忘记密码",textAlign: TextAlign.end,),flex: 1,),
-            new Padding(padding: new EdgeInsets.symmetric(horizontal: 16.0)),
-          ],
-        ),
-      ],
+                  )
+                ]),
+          ),
+          new Container(
+            width: double.infinity,
+            height: 44.0,
+            child: new RaisedButton(
+                onPressed: _login,
+                color: mainColor,
+                child: new Text(
+                  '登录',
+                  style: new TextStyle(color: Colors.white, fontSize: 16.0),
+                )),
+          ),
+          new Padding(padding: new EdgeInsets.symmetric(vertical: 8.0)),
+          new Row(
+            children: <Widget>[
+              new Expanded(child:  new Text("注册"),flex: 1,),
+              new Expanded(child:  new Text("忘记密码",textAlign: TextAlign.end,),flex: 1,),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
-  void _login() {}
+  void _login() {
+    Navigator.of(context).pushReplacementNamed(router_page.main);
+  }
 
   void chengaPwdIcon() {
     setState(() {
