@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_qmorn/colors.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class MainPage extends StatefulWidget {
@@ -45,42 +46,115 @@ class _MainPageState extends State<MainPage> {
   Widget _buildMusic() {
     return new SafeArea(
         child: new Scaffold(
-      body: WebviewScaffold(
-        url: resUrl,
-        withZoom: false,
-        withLocalStorage: true,
-        withJavascript: true,
-      ),
-    ));
+          body: WebviewScaffold(
+            url: resUrl,
+            withZoom: false,
+            withLocalStorage: true,
+            withJavascript: true,
+          ),
+        ));
   }
 
   Widget _buildDevice() {
     return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        image:new DecorationImage(image: AssetImage("assets/images/bg_elfdevice.png"),
-        fit: BoxFit.cover),
-      ),
-      child: Column(
-        children: <Widget>[
-          Image.asset("assets/images/ic_dev_elf.png"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: new DecorationImage(
+              image: AssetImage("assets/images/bg_elfdevice.png"),
+              fit: BoxFit.cover),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Image.asset("assets/images/ic_elfset.png"),
-              Image.asset("assets/images/ic_moniter.png"),
-              Image.asset("assets/images/ic_book_lib.png"),
+              Spacer(
+                flex: 1,
+              ),
+              Image.asset("assets/images/ic_add.png"),
+              Spacer(
+                flex: 2,
+              ),
+              Image.asset("assets/images/ic_produck_name.png"),
+              Spacer(
+                flex: 6,
+              ),
+              Image.asset("assets/images/ic_dev_elf.png"),
+              Spacer(
+                flex: 4,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Image.asset("assets/images/ic_elfset.png"),
+                      Text(
+                        "设备设置",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Image.asset("assets/images/ic_moniter.png"),
+                      Text(
+                        "远程陪护",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Image.asset("assets/images/ic_book_lib.png"),
+                      Text(
+                        "绘本书架",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Spacer(
+                flex: 2,
+              )
             ],
           ),
-        ],
+        ));
+  }
+
+  Widget _buildMine() {
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            _buildUserInfo(),
+            _buildFunction(),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildMine() {
+  Widget _buildUserInfo() {
     return Container(
-      child: Text("设备"),
-    );
+        width: double.infinity,
+        height: 200,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: mainColor
+        ),
+        child: Center(
+          child: Column(children: <Widget>[
+            Image.network(
+              "https://q-links-com.oss-cn-shenzhen.aliyuncs.com/img/app/user/logo/1.jpg",
+              width: 60,),
+            Text("13128756863"),
+          ],),
+        ));
+  }
+
+  Widget _buildFunction() {
+    return Container(child: Text("user"),);
   }
 
   void _onItemTap(int index) {
