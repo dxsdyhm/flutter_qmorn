@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 1;
+  final resUrl =
+      "http://iot-ai.tuling123.com/jump/app/source?apiKey=1f9c927241a64082a5be9d967dbc5991&uid=1E5C8CD31396E355&client=android";
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +43,41 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildMusic() {
+    return new SafeArea(
+        child: new Scaffold(
+      body: WebviewScaffold(
+        url: resUrl,
+        withZoom: false,
+        withLocalStorage: true,
+        withJavascript: true,
+      ),
+    ));
+  }
+
+  Widget _buildDevice() {
     return Container(
-      child: Text("音乐"),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        image:new DecorationImage(image: AssetImage("assets/images/bg_elfdevice.png"),
+        fit: BoxFit.cover),
+      ),
+      child: Column(
+        children: <Widget>[
+          Image.asset("assets/images/ic_dev_elf.png"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Image.asset("assets/images/ic_elfset.png"),
+              Image.asset("assets/images/ic_moniter.png"),
+              Image.asset("assets/images/ic_book_lib.png"),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildMine() {
-    return Container(
-      child: Text("我的"),
-    );
-  }
-
-  Widget _buildDevice() {
     return Container(
       child: Text("设备"),
     );

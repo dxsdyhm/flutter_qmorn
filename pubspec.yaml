@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   flutter_svg: ^0.12.4
+  flutter_webview_plugin: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,10 @@ flutter:
   assets:
   - assets/images/
   - assets/images/svg/
+  - assets/images/ic_dev_elf.png
+  - assets/images/ic_elfset.png
+  - assets/images/ic_moniter.png
+  - assets/images/ic_book_lib.png
   fonts:
   - family: logo
     fonts:
