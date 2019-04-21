@@ -70,7 +70,10 @@ class _MainPageState extends State<MainPage> {
               Spacer(
                 flex: 1,
               ),
-              Image.asset("assets/images/ic_add.png"),
+              Container(
+                child: Image.asset("assets/images/ic_add.png"),
+                alignment: Alignment.centerRight,
+              ),
               Spacer(
                 flex: 2,
               ),
@@ -125,6 +128,7 @@ class _MainPageState extends State<MainPage> {
   Widget _buildMine() {
     return SingleChildScrollView(
       child: Container(
+        alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             _buildUserInfo(),
